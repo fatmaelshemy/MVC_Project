@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjectMVC.Models;
+using ProjectMVC.Repository;
 
 namespace ProjectMVC
 {
     public class Program
-     {
+    {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,10 @@ namespace ProjectMVC
                 .AddEntityFrameworkStores<Context>();
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ICategory, CategoryRepository>();
+            builder.Services.AddScoped<IJob, JobRepository>();
+
 
             var app = builder.Build();
 

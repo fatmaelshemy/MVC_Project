@@ -1,6 +1,7 @@
 ﻿namespace ProjectMVC.Repository
 {
-	public class CompanyRepository
-	{
-	}
+    public class CompanyRepository
+    {
+
+    }
 }
