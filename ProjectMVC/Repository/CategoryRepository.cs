@@ -1,4 +1,5 @@
-﻿using ProjectMVC.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProjectMVC.Models;
 
 namespace ProjectMVC.Repository
 {
@@ -32,9 +33,13 @@ namespace ProjectMVC.Repository
         }
         public void Delete(int id)
         {
-            Category cat = GetById(id);
-            context.Remove(cat);
+            Category category = GetById(id);
+            if (category != null)
+            {
+                context.Categories.Remove(category);
+            }
         }
+
         public void Save()
         {
             context.SaveChanges();

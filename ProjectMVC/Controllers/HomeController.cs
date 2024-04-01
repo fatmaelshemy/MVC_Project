@@ -26,10 +26,10 @@ namespace ProjectMVC.Controllers
         {
             return View("About");
         }
-        public IActionResult Category()
-        {
-            return View("Category");
-        }
+        //public IActionResult Category()
+        //{
+        //    return View("Category");
+        //}
         public IActionResult Contact()
         {
             return View("Contact");

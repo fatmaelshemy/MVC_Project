@@ -12,8 +12,8 @@ using ProjectMVC.Models;
 namespace ProjectMVC.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240329223523_init")]
-    partial class init
+    [Migration("20240331134704_morecategories")]
+    partial class morecategories
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -304,6 +304,54 @@ namespace ProjectMVC.Migrations
                             Id = 3,
                             Description = "Software Testing  related jobs",
                             Name = "Software Testing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Data Science related jobs",
+                            Name = "Data Science"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Digital Marketing related jobs",
+                            Name = "Digital Marketing"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Graphic Design related jobs",
+                            Name = "Graphic Design"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Financial Services related jobs",
+                            Name = "Financial Services"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Healthcare related jobs",
+                            Name = "Healthcare"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Education related jobs",
+                            Name = "Education"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Sales related jobs",
+                            Name = "Sales"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Customer Support related jobs",
+                            Name = "Customer Support"
                         });
                 });
 

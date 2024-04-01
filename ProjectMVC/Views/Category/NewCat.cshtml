@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "NewCat";
+    Layout = "_CategoryLayout";
+}
+
+<h1>NewCat</h1>
+@model Category
+<form asp-action="SaveNEw" asp-controller="Category"  method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+   
+    <input type="submit" value="Add New" class="btn btn-success" />
+</form>

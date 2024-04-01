@@ -16,13 +16,13 @@ namespace ProjectMVC.Controllers
             _JobRepository = JobRepository;
         }
 
-        //public IActionResult Index()
-        //{
+        public IActionResult Index()
+        {
 
-        //    List<Category> catListModel = _CategoryRepository.GetAll();
-        //    return View("Index", catListModel);
+            List<Category> catListModel = _CategoryRepository.GetAll();
+            return View("CategoryIndex", catListModel);
 
-        //}
+        }
 
         public IActionResult GetJobByCatID(int catID)
         {
@@ -33,10 +33,11 @@ namespace ProjectMVC.Controllers
 
         }
 
-        public IActionResult ShowCategoriesJob()
+        public IActionResult ShowCategoriesJob(int categoryId)
         {
-            List<Category> categories = _CategoryRepository.GetAll();
-            return View("ShowCategoriesJob", categories);
+            List<Job> jobs = _JobRepository.GetAll().Where(j => j.CategoryId == categoryId).ToList();
+
+            return View("ShowCategoriesJob", jobs);
         }
 
         [HttpGet]
@@ -55,12 +56,16 @@ namespace ProjectMVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View("NewDept", cat);
+            return View("NewCat", cat);
         }
 
         public IActionResult Delete(int id)
         {
-            return View("Delete", _CategoryRepository.GetById(id));
+            _CategoryRepository.Delete(id);
+            _CategoryRepository.Save(); 
+
+            return RedirectToAction("Index");
         }
+       
     }
 }
