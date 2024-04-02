@@ -420,6 +420,9 @@ namespace ProjectMVC.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -427,6 +430,9 @@ namespace ProjectMVC.Migrations
                     b.Property<string>("Position")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Salary")
+                        .HasColumnType("float");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -445,270 +451,360 @@ namespace ProjectMVC.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
+                            DateTime = new DateTime(2023, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Develop software applications",
+                            Location = "Assiut",
                             Name = "Software Engineer",
                             Position = "Employee",
+                            Salary = 50000.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 1,
+                            DateTime = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Develop software solutions",
+                            Location = "Cario",
                             Name = "Software Developer",
                             Position = "Developer",
-                            Type = "Full Time"
+                            Salary = 9800.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 1,
+                            DateTime = new DateTime(2024, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engineer software systems",
+                            Location = "SmartVillage",
                             Name = "Software Engineer",
                             Position = "Engineer",
+                            Salary = 12000.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 1,
+                            DateTime = new DateTime(2024, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Work on backend systems",
+                            Location = "Sohag",
                             Name = "Backend Developer",
                             Position = "Developer",
-                            Type = "Full Time"
+                            Salary = 30000.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 1,
+                            DateTime = new DateTime(2023, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Develop user interfaces",
+                            Location = "Minya",
                             Name = "Frontend Developer",
                             Position = "Developer",
+                            Salary = 9800.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
+                            DateTime = new DateTime(2024, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Design user interfaces",
+                            Location = "Assiut",
                             Name = "UI Designer",
                             Position = "Team Lead",
-                            Type = "part time"
+                            Salary = 98000.0,
+                            Type = "Part time"
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 2,
+                            DateTime = new DateTime(2024, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Design user interfaces",
+                            Location = "Minyfia",
                             Name = "Graphic Designer",
                             Position = "Designer",
+                            Salary = 40000.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 8,
                             CategoryId = 2,
+                            DateTime = new DateTime(2024, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Create user experiences",
+                            Location = "Alexandria",
                             Name = "UX Designer",
                             Position = "Designer",
+                            Salary = 9000.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 9,
                             CategoryId = 2,
+                            DateTime = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Design interactive interfaces",
+                            Location = "Cario",
                             Name = "Interaction Designer",
                             Position = "Designer",
+                            Salary = 9800.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 10,
                             CategoryId = 2,
+                            DateTime = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Focus on visual aspects of design",
+                            Location = "Elgharbia",
                             Name = "Visual Designer",
                             Position = "Designer",
-                            Type = "Full Time"
+                            Salary = 9800.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 11,
                             CategoryId = 3,
+                            DateTime = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test software applications",
+                            Location = "Cario",
                             Name = "QA Tester",
                             Position = "Tester",
-                            Type = "Full Time"
+                            Salary = 9400.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 12,
                             CategoryId = 3,
+                            DateTime = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Automate testing processes",
+                            Location = "Cario",
                             Name = "Automation Tester",
                             Position = "Tester",
+                            Salary = 9800.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 13,
                             CategoryId = 3,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test software performance",
+                            Location = "Assiut",
                             Name = "Performance Tester",
                             Position = "Tester",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 14,
                             CategoryId = 3,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Analyze software quality",
+                            Location = "Cairo",
                             Name = "Quality Analyst",
                             Position = "Analyst",
+                            Salary = 29900.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 15,
                             CategoryId = 4,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Analyzing complex data sets",
+                            Location = "Assiut",
                             Name = "Data Scientist",
                             Position = "Scientist",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 16,
                             CategoryId = 4,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Implement machine learning algorithms",
+                            Location = "Assiut",
                             Name = "Machine Learning Engineer",
                             Position = "Engineer",
-                            Type = "Full Time"
+                            Salary = 29200.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 17,
                             CategoryId = 4,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Analyze data to extract insights",
+                            Location = "Assiut",
                             Name = "Data Analyst",
                             Position = "Analyst",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 18,
                             CategoryId = 4,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage and analyze large data sets",
+                            Location = "Assiut",
                             Name = "Big Data Engineer",
                             Position = "Engineer",
-                            Type = "Full Time"
+                            Salary = 29200.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 19,
                             CategoryId = 5,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Plan and execute digital marketing campaigns",
+                            Location = "Assiut",
                             Name = "Digital Marketing Specialist",
                             Position = "Specialist",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 20,
                             CategoryId = 5,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Optimize websites for search engines",
+                            Location = "Assiut",
                             Name = "SEO Analyst",
                             Position = "Analyst",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 21,
                             CategoryId = 5,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage social media presence",
+                            Location = "Assiut",
                             Name = "Social Media Manager",
                             Position = "Manager",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 22,
                             CategoryId = 5,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Create engaging content for marketing purposes",
+                            Location = "Assiut",
                             Name = "Content Marketing Specialist",
                             Position = "Specialist",
-                            Type = "Full Time"
+                            Salary = 29200.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 24,
                             CategoryId = 6,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Create visual concepts",
+                            Location = "Assiut",
                             Name = "Graphic Designer",
                             Position = "Designer",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 25,
                             CategoryId = 6,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Create illustrations and graphics",
+                            Location = "Assiut",
                             Name = "Illustrator",
                             Position = "Illustrator",
-                            Type = "Full Time"
+                            Salary = 29200.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 26,
                             CategoryId = 6,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oversee visual aspects of projects",
+                            Location = "Assiut",
                             Name = "Art Director",
                             Position = "Director",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 27,
                             CategoryId = 6,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Create animated graphics and visual effects",
+                            Location = "Assiut",
                             Name = "Motion Graphics Designer",
                             Position = "Designer",
-                            Type = "Full Time"
+                            Salary = 29200.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 28,
                             CategoryId = 7,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Analyze financial data and trends",
+                            Location = "Assiut",
                             Name = "Financial Analyst",
                             Position = "Analyst",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 29,
                             CategoryId = 7,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage investment portfolios",
+                            Location = "Assiut",
                             Name = "Investment Banker",
                             Position = "Banker",
-                            Type = "Full Time"
+                            Salary = 29200.0,
+                            Type = "Part Time"
                         },
                         new
                         {
                             Id = 30,
                             CategoryId = 7,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Provide financial advice to clients",
+                            Location = "Assiut",
                             Name = "Financial Advisor",
                             Position = "Advisor",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 31,
                             CategoryId = 7,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage financial records and statements",
+                            Location = "Assiut",
                             Name = "Accountant",
                             Position = "Accountant",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
@@ -718,141 +814,187 @@ namespace ProjectMVC.Migrations
                             Description = "Provide patient care",
                             Name = "Registered Nurse",
                             Position = "Nurse",
+                            Salary = 0.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 33,
                             CategoryId = 8,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Diagnose and treat medical conditions",
+                            Location = "Assiut",
                             Name = "Medical Doctor",
                             Position = "Doctor",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 34,
                             CategoryId = 8,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Assist healthcare professionals",
+                            Location = "Assiut",
                             Name = "Medical Assistant",
                             Position = "Assistant",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 35,
                             CategoryId = 8,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Dispense medications and provide information",
+                            Location = "Assiut",
                             Name = "Pharmacist",
                             Position = "Pharmacist",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 36,
                             CategoryId = 9,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Educate students in a specific subject area",
+                            Location = "Assiut",
                             Name = "Teacher",
                             Position = "Teacher",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 37,
                             CategoryId = 9,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oversee school operations and staff",
+                            Location = "Assiut",
                             Name = "Principal",
                             Position = "Principal",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 38,
                             CategoryId = 9,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Provide academic and personal guidance to students",
+                            Location = "Assiut",
                             Name = "Guidance Counselor",
                             Position = "Counselor",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 39,
                             CategoryId = 9,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage library resources and assist patrons",
+                            Location = "Assiut",
                             Name = "Librarian",
                             Position = "Librarian",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 40,
                             CategoryId = 10,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sell products or services to customers",
+                            Location = "Assiut",
                             Name = "Sales Representative",
                             Position = "Representative",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 41,
                             CategoryId = 10,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oversee sales team and strategies",
+                            Location = "Assiut",
                             Name = "Sales Manager",
                             Position = "Manager",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 42,
                             CategoryId = 10,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage client accounts and relationships",
+                            Location = "Assiut",
                             Name = "Account Executive",
                             Position = "Executive",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 43,
                             CategoryId = 10,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Identify and develop business opportunities",
+                            Location = "Assiut",
                             Name = "Business Development Representative",
                             Position = "Representative",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 44,
                             CategoryId = 11,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Assist customers with product inquiries and issues",
+                            Location = "Assiut",
                             Name = "Customer Support Specialist",
                             Position = "Specialist",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 45,
                             CategoryId = 11,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Provide technical assistance to customers",
+                            Location = "Assiut",
                             Name = "Technical Support Engineer",
                             Position = "Engineer",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 46,
                             CategoryId = 11,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Handle customer inquiries and complaints",
+                            Location = "Assiut",
                             Name = "Customer Service Representative",
                             Position = "Representative",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
                         {
                             Id = 47,
                             CategoryId = 11,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Manage customer support team and operations",
+                            Location = "Luxor",
                             Name = "Support Manager",
                             Position = "Manager",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         });
                 });

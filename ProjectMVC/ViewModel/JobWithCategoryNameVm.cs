@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-namespace ProjectMVC.Models
+﻿using ProjectMVC.Models;
+
+namespace ProjectMVC.ViewModel
 {
-    public class Job
+    public class JobWithCategoryNameVm
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,17 +18,12 @@ namespace ProjectMVC.Models
 
         public Double Salary { get; set; }
 
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
-        public Category? Category { get; set; }
+        public int SelectedCategoryId { get; set; }
+        public List<Category>? Categories { get; set; }
 
 
-        [ForeignKey("Company")]
-        public int? CompanyId { get; set; }
-        public Company? Company { get; set; }
-
-
-
+        public int? SelectedCompanyId { get; set; }
+        public List<Company>? Companies { get; set; }
 
     }
 }

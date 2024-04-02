@@ -1,4 +1,5 @@
-﻿using ProjectMVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectMVC.Models;
 
 namespace ProjectMVC.Repository
 {
@@ -20,7 +21,17 @@ namespace ProjectMVC.Repository
         }
         public Job GetById(int id)
         {
-            return context.Jobs.FirstOrDefault(e => e.Id == id);
+            return context.Jobs
+         .Include(x => x.Category)
+         .FirstOrDefault(e => e.Id == id);
+        }
+        public List<Job> GetFullTimeJob()
+        {
+            return context.Jobs.Where(j => j.Type == "Full Time").ToList();
+        }
+        public List<Job> GetPartTimeJob()
+        {
+            return context.Jobs.Where(j => j.Type == "Part Time").ToList();
         }
         public void Insert(Job obj)
         {
@@ -32,8 +43,9 @@ namespace ProjectMVC.Repository
         }
         public void Delete(int id)
         {
-            Job cat = GetById(id);
-            context.Remove(cat);
+            Job job = GetById(id);
+            context.Remove(job);
+            context.SaveChanges();
         }
         public List<Job> GetByCatID(int catID)
         {

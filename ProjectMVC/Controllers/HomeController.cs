@@ -38,10 +38,10 @@ namespace ProjectMVC.Controllers
         {
             return View("Job_Detail");
         }
-        public IActionResult Job_List()
-        {
-            return View("Job_List");
-        }
+        //public IActionResult Job_List()
+        //{
+        //    return View("Job_List");
+        //}
         public IActionResult Errors()
         {
             return View("Errors");

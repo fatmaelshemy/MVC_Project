@@ -1,0 +1,60 @@
+﻿@using ProjectMVC.ViewModel;
+
+@model JobWithCategoryNameVm
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Job_ListLayout";
+
+}
+
+
+<h1>Edit</h1>
+<!--/Employee/Savedit/1?gg=jj Post -->
+<div class="container">
+    <form method="post" asp-action="SaveEdit" asp-controller="Job">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form form-control" />
+
+
+    <label>Location</label>
+    <input type="text" name="Location" id="Location"
+           value="@Model.Location" class="form form-control" />
+
+
+
+    <label>Salary</label>
+    <input type="number" name="Salary" id="Salary" value="@Model.Salary" class="form form-control" />
+
+    <label>Position</label>
+    <input type="text" name="Position" id="Position" value="@Model.Position" class="form form-control" />
+
+    <label>Description</label>
+    <input type="text" name="Description" id="Description" value="@Model.Description" class="form form-control" />
+
+        <label>Type</label>
+        <input type="text" name="Type" id="Type" value="@Model.Type" class="form form-control" />
+
+    <label>Category</label>
+    <select name="SelectedCategoryId" id="SelectedCategoryId" class="form form-control">
+        @foreach (var jobItem in Model.Categories)
+        {
+            if (Model.SelectedCategoryId == jobItem.Id)
+            {
+
+                <option value="@jobItem.Id" selected>@jobItem.Name</option>
+            }
+            else
+            {
+                <option value="@jobItem.Id">@jobItem.Name</option>
+            }
+        }
+    </select>
+
+    <input type="submit" class="btn btn-success" />
+</form>
+
+<!--HTML Helper-->
+<a href="/Job/FullTimeJobIndex">Back To List</a>
+<br />
+</div>

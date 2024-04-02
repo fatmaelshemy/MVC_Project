@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "FullTimeJobIndex";
+    Layout = "_Job_ListLayout";
+}
+
+@model List<Job>
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
+
+        <!-- Navigation Tabs -->
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+            <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+
+                <li class="nav-item">
+                    <a asp-controller="Job" asp-action="FullTimeJobIndex" class="nav-link active">
+                        Full Time
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Job" asp-action="PartTimeJobIndex" class="nav-link">
+                        Part Time
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Job List -->
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show active">
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job List</h1>
+                <a asp-controller="Job" asp-action="New" class="btn btn-success">Add New Job</a>
+
+                <!-- Job Items -->
+                <div class="row g-4">
+                    @foreach (Job job in Model)
+                    {
+                        <div class="col-lg-12">
+                            <div class="job-item p-4 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="row g-4">
+                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                        <!-- Replace the image source with your actual job image URL -->
+                                        <div class="text-start ps-4">
+                                            <h5 class="mb-3">@job.Name</h5>
+                                            <!-- You can use job properties to display job details -->
+                                            <p class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@job.Location</p>
+                                            <p class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@job.Type</p>
+                                            <p class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@job.Salary</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                        <div class="d-flex mb-3">
+                                            <!-- Links for delete and update actions -->
+                                            <a asp-controller="Job" asp-action="Delete" asp-route-id="@job.Id" class="btn btn-danger me-3">Delete</a>
+                                            <a asp-controller="Job" asp-action="Edit" asp-route-id="@job.Id" class="btn btn-primary">Update</a>
+                                            <!-- See More button -->
+                                        </div>
+                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: @job.DateTime</small>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -47,6 +47,7 @@ namespace ProjectMVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+
             app.UseRouting();
 
             app.UseAuthorization();

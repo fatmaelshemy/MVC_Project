@@ -8,6 +8,10 @@ namespace ProjectMVC.Repository
 
         public Job GetById(int id);
 
+        public List<Job> GetFullTimeJob();
+
+        public List<Job> GetPartTimeJob();
+
         public void Insert(Job obj);
 
         public void Update(Job obj);
