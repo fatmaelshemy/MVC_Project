@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Job_DetailLayout";
+}
+@model Job 
+
+<!-- Job Detail Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gy-5 gx-4">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-5">
+                    <!-- Display job details here -->
+                    <h3 class="mb-3">@Model.Name</h3>
+                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@Model.Location</span>
+                        <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@Model.Type</span>
+                        <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@Model.Salary</span>
+                    </div>
+
+                <div class="mb-5">
+                    <h4 class="mb-3">Job description</h4>
+                    <p>@Model.Description</p>
+                    <div class="mb-5">
+                        <h4 class="mb-3">Responsibility</h4>
+                        @foreach (var responsibilityLine in Model.Responsibility.Split(new[] { ',', '.' }, StringSplitOptions.RemoveEmptyEntries))
+                        {
+                           <p><i class="fa fa-angle-right text-primary me-2"></i>@responsibilityLine.Trim()</p>
+                        }
+                   </div>
+                    <!-- Add qualifications section -->
+                    <div class="mb-5">
+                        <h4 class="mb-3">Qualifications</h4>
+                        @foreach (var QualificationsLine in Model.Qualifications.Split(new[] { ',', '.' }, StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>@QualificationsLine.Trim()</p>
+                        }
+                    </div>
+                </div>
+
+                <!-- Add apply form section here -->
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                    <h4 class="mb-4">Job Summary</h4>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Published On: @Model.DateTime</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Vacancy: @Model.Position</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: @Model.Type</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: @Model.Salary $</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Location: @Model.Location</p>
+                </div>
+                <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                    <h4 class="mb-4">Company Detail</h4>
+                    <!-- Add company details here -->
+                </div>
+            </div>
+            <!--Apply For The Job here-->
+            <div class="">
+                            <h4 class="mb-4">Apply For The Job</h4>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-12 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Your Name">
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <input type="email" class="form-control" placeholder="Your Email">
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Portfolio Website">
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <input type="file" class="form-control bg-white">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="form-control" rows="5" placeholder="Coverletter"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100" type="submit">Apply Now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>

@@ -144,7 +144,11 @@ namespace ProjectMVC.Controllers
             }
             return View("Edit", jobview);
         }
-
+        public IActionResult Details(int id)
+        {
+            Job jobModel = _JobRepository.GetById(id);
+            return View("Details", jobModel);
+        }
 
 
 

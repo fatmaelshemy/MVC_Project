@@ -6,7 +6,8 @@ namespace ProjectMVC.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
-
+        public string? Responsibility { get; set; }
+        public string? Qualifications { get; set; }
         public string? Image { get; set; }
         public DateTime? DateTime { get; set; }
 
