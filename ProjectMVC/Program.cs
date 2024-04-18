@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 
@@ -18,11 +19,21 @@ namespace ProjectMVC
             builder.Services.AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
 
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
+                options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<Context>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+            builder.Services.AddControllersWithViews();
+
+
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<Context>();
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<Context>();
 
             builder.Services.AddControllersWithViews();
 
@@ -50,8 +61,15 @@ namespace ProjectMVC
 
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),
+                "wwwroot", "img")),
+                RequestPath = "/img"
+            });
 
             app.MapControllerRoute(
                 name: "default",
