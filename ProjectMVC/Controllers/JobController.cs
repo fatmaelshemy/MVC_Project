@@ -8,12 +8,13 @@ namespace ProjectMVC.Controllers
     {
         ICategory _CategoryRepository;
         IJob _JobRepository;
-
+        ICampany _CompanyRepository;
         public JobController
-                (ICategory CategoryRepository, IJob JobRepository)
+                (ICategory CategoryRepository, IJob JobRepository,ICampany CompanyRepository)
         {
             _CategoryRepository = CategoryRepository;
             _JobRepository = JobRepository;
+            _CompanyRepository = CompanyRepository;
         }
 
 
@@ -43,7 +44,7 @@ namespace ProjectMVC.Controllers
             var viewModel = new JobWithCategoryNameVm
             {
                 Categories = _CategoryRepository.GetAll(),
-                //Companies = _CompanyRepository.GetAll()
+                Companies = _CompanyRepository.GetAll()
             };
             return View("NewJob", viewModel);
         }
@@ -62,8 +63,8 @@ namespace ProjectMVC.Controllers
                     DateTime = jobview.DateTime,
                     CategoryId = jobview.SelectedCategoryId,
                     Type = jobview.Type,
-                    Location = jobview.Location
-                    //CompanyId =jobview.SelectedCompanyId
+                    Location = jobview.Location,
+                    CompanyId =jobview.SelectedCompanyId
 
                 };
                 _JobRepository.Insert(jobmodel);
@@ -109,6 +110,7 @@ namespace ProjectMVC.Controllers
             jobVM.Type = jobModel.Type;
             jobVM.Description = jobModel.Description;
             jobVM.Categories = _CategoryRepository.GetAll();
+            jobVM.Companies=_CompanyRepository.GetAll();
 
             return View("Edit", jobVM);
         }
