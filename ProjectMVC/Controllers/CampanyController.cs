@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 using ProjectMVC.ViewModel;
 
 namespace ProjectMVC.Controllers
 {
+
     public class CampanyController : Controller
     {
         ICampany _CompanyRepository;
@@ -37,6 +39,7 @@ namespace ProjectMVC.Controllers
 
             return View("CampaniesJob", jobs);
         }
+        [Authorize]
         [HttpGet]
         public IActionResult New()
         {
