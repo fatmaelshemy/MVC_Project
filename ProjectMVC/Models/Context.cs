@@ -18,6 +18,7 @@ namespace ProjectMVC.Models
         public DbSet<Campany> Companys { get; set; }
         public DbSet<ApplyForJob> ApplyForJobs { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -559,11 +560,11 @@ new Job
         }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.
-           UseSqlServer("Data Source=.;Initial Catalog=ProjectMVC4;Integrated Security=True;Trust Server Certificate = False;Encrypt = False;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.
+        //   UseSqlServer("Data Source=.;Initial Catalog=ProjectMVC4;Integrated Security=True;Trust Server Certificate = False;Encrypt = False;");
+        //}
 
 
 

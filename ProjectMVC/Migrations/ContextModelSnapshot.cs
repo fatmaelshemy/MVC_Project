@@ -263,6 +263,25 @@ namespace ProjectMVC.Migrations
                     b.ToTable("ApplyForJobs");
                 });
 
+            modelBuilder.Entity("ProjectMVC.Models.Campany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companys");
+                });
+
             modelBuilder.Entity("ProjectMVC.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -352,7 +371,7 @@ namespace ProjectMVC.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Company", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -360,17 +379,24 @@ namespace ProjectMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companys");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("ProjectMVC.Models.Feedback", b =>
@@ -1164,7 +1190,7 @@ namespace ProjectMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectMVC.Models.Company", "Company")
+                    b.HasOne("ProjectMVC.Models.Campany", "Company")
                         .WithMany("Jobs")
                         .HasForeignKey("CompanyId");
 
@@ -1173,12 +1199,12 @@ namespace ProjectMVC.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Category", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Campany", b =>
                 {
                     b.Navigation("Jobs");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Company", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Category", b =>
                 {
                     b.Navigation("Jobs");
                 });
