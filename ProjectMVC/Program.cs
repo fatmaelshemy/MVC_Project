@@ -28,6 +28,8 @@ namespace ProjectMVC
 
             builder.Services.AddScoped<ICategory, CategoryRepository>();
             builder.Services.AddScoped<IJob, JobRepository>();
+            builder.Services.AddScoped<IApplyForJob, ApplyForJobRepository>();
+
 
 
             var app = builder.Build();
@@ -55,6 +57,8 @@ namespace ProjectMVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             app.MapRazorPages();
 
             app.Run();

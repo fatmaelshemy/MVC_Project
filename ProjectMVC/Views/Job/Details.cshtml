@@ -1,9 +1,11 @@
-﻿
+﻿@model ProjectMVC.Models.Job
+
 @{
     ViewData["Title"] = "Details";
     Layout = "_Job_DetailLayout";
 }
-@model Job 
+
+
 
 <!-- Job Detail Start -->
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -13,10 +15,10 @@
                 <div class="d-flex align-items-center mb-5">
                     <!-- Display job details here -->
                     <h3 class="mb-3">@Model.Name</h3>
-                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@Model.Location</span>
-                        <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@Model.Type</span>
-                        <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@Model.Salary</span>
-                    </div>
+                    <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@Model.Location</span>
+                    <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>@Model.Type</span>
+                    <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>@Model.Salary</span>
+                </div>
 
                 <div class="mb-5">
                     <h4 class="mb-3">Job description</h4>
@@ -25,9 +27,9 @@
                         <h4 class="mb-3">Responsibility</h4>
                         @foreach (var responsibilityLine in Model.Responsibility.Split(new[] { ',', '.' }, StringSplitOptions.RemoveEmptyEntries))
                         {
-                           <p><i class="fa fa-angle-right text-primary me-2"></i>@responsibilityLine.Trim()</p>
+                            <p><i class="fa fa-angle-right text-primary me-2"></i>@responsibilityLine.Trim()</p>
                         }
-                   </div>
+                    </div>
                     <!-- Add qualifications section -->
                     <div class="mb-5">
                         <h4 class="mb-3">Qualifications</h4>
@@ -37,9 +39,7 @@
                         }
                     </div>
                 </div>
-
                 <!-- Add apply form section here -->
-
             </div>
 
             <div class="col-lg-4">
@@ -56,33 +56,111 @@
                     <!-- Add company details here -->
                 </div>
             </div>
-            <!--Apply For The Job here-->
-            <div class="">
-                            <h4 class="mb-4">Apply For The Job</h4>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Your Name">
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Your Email">
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Portfolio Website">
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="file" class="form-control bg-white">
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea class="form-control" rows="5" placeholder="Coverletter"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Apply Now</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                
+             <div class="col-12">
+    <h4 class="mb-4">Apply For The Job</h4>
+              <form method="post" enctype="multipart/form-data" asp-action="Apply" asp-controller="ApplyForJob">
+    <div class="row g-3">
+        <div class="col-12 col-sm-6">
+            <input type="text" class="form-control" placeholder="Your Name" name="userName" pattern=".{8,}" title="Name must be at least 8 characters" required>
+            <div class="invalid-feedback">Please provide a name with at least 8 characters.</div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="email" class="form-control" placeholder="Your Email" name="userEmail"  title="Please enter a valid email address" required>
+            <div class="invalid-feedback">Please provide a valid email address.</div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="text" class="form-control" placeholder="Portfolio Website" name="portfolio">
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="file" class="form-control bg-white" name="FilePath">
+        </div>
+        <input type="hidden" value="@Model.Id" name="JobId" />
+        <div class="col-12">
+            <textarea class="form-control" rows="5" placeholder="Coverletter" name="Description"></textarea>
+        </div>
+        <div class="col-3">
+                            <button class="btn btn-primary w-50" type="submit">Submit</button>
+
         </div>
     </div>
+</form>
 </div>
+</div>
+</div>
+</div>
+
+<script>
+    var myButton = document.getElementById("myButton");
+
+    myButton.addEventListener("click", function () {
+       
+        window.location.href = '@Url.Action("Apply", "ApplyForJob")';
+    });
+   
+    
+    var nameInput = document.getElementById("userName");
+ 
+    var nameError = document.getElementById("nameError");
+   
+    var submitButton = document.getElementById("submitButton");
+
+    submitButton.addEventListener("click", function () {
+       
+        if (nameInput.value.length < 8) {
+           
+            nameError.style.display = "inline";
+        } else {
+            
+            nameError.style.display = "none";
+            
+            document.querySelector("form").submit();
+        }
+    });
+</script>
+
+@* <div id="myPopup" class="popup">
+    <div class="popup-content">
+        <h1 style="color: green">
+            Application Operation Succeeded!
+        </h1>
+        <button id="closePopup">
+            Go To Home
+        </button>
+    </div>
+</div>
+
+<script>
+    var myButton = document.getElementById("myButton");
+    var closePopup = document.getElementById("closePopup");
+    var myPopup = document.getElementById("myPopup");
+
+    // Initially hide the popup
+    myPopup.classList.add("hide");
+
+    // Add an event listener to the Submit button
+    myButton.addEventListener("click", function () {
+        // Show the popup
+        myPopup.classList.remove("hide");
+    });
+
+    // Add an event listener to the close button
+    closePopup.addEventListener("click", function () {
+        // Redirect to home page
+        window.location.href = '@Url.Action("Index", "Home")';
+    });
+
+    // Prevent closing the popup when clicking inside it
+    myPopup.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
+
+    // Close the popup when clicking outside it
+    window.addEventListener("click", function (event) {
+        if (event.target == myPopup) {
+            myPopup.classList.add("hide");
+        }
+    });
+</script>
+
+ *@

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 using ProjectMVC.ViewModel;
@@ -8,12 +9,14 @@ namespace ProjectMVC.Controllers
     {
         ICategory _CategoryRepository;
         IJob _JobRepository;
+        IApplyForJob _ApplyForJob;
 
         public JobController
-                (ICategory CategoryRepository, IJob JobRepository)
+                (ICategory CategoryRepository, IJob JobRepository, IApplyForJob applyForJob)
         {
             _CategoryRepository = CategoryRepository;
             _JobRepository = JobRepository;
+            _ApplyForJob = applyForJob;
         }
 
 
@@ -142,8 +145,6 @@ namespace ProjectMVC.Controllers
             Job jobModel = _JobRepository.GetById(id);
             return View("Details", jobModel);
         }
-
-
-
+       
     }
 }
