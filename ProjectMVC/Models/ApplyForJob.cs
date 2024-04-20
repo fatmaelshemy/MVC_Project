@@ -11,13 +11,16 @@ namespace ProjectMVC.Models
 		public int JobId { get; set; }
 		public Job Job { get; set; }
 
-		[ForeignKey("User")]
-		public string UserId { get; set; }
-		public ApplicationUser User { get; set; }
-		public DateTime DateTime { get; set; }
+		//[ForeignKey("User")]
+		//public string UserId { get; set; }
+		public string userName {  get; set; }
+		public string userEmail { get; set; }
+		public string portfolio { get; set; }
+		//public ApplicationUser User { get; set; }
+		public DateTime? DateTime { get; set; }
 		public string Description { get; set; }
 
 		[Display(Name = "Upload CV ")]
-		public string FilePath {  get; set; }
+		public string? FilePath {  get; set; }
 	}
 }

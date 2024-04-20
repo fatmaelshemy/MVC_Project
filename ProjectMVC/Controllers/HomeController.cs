@@ -4,6 +4,7 @@ using ProjectMVC.Repository;
 using ProjectMVC.ViewModel;
 using System.Diagnostics;
 
+
 namespace ProjectMVC.Controllers
 {
     public class HomeController : Controller
@@ -18,8 +19,10 @@ namespace ProjectMVC.Controllers
 
             _logger = logger;
         }
+ Apply
 
-       
+
+       master
         public IActionResult Index()
         {
             HomeViewModel homeViewModel = new HomeViewModel();
@@ -47,15 +50,16 @@ namespace ProjectMVC.Controllers
         }
         public IActionResult Job_Detail()
         {
-            
-            return View("Job_Detail");
-            
+            return View("Job_Detail"); 
         }
-        public IActionResult Apply()
-        {
-            return View();
-        }
-        
+
+
+        //[HttpPost]
+        //public IActionResult Apply()
+        //{
+
+        //    return View();
+        //}
 
         //public IActionResult Job_List()
         //{

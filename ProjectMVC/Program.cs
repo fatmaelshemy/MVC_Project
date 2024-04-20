@@ -39,11 +39,15 @@ namespace ProjectMVC
 
             builder.Services.AddScoped<ICategory, CategoryRepository>();
             builder.Services.AddScoped<IJob, JobRepository>();
+ Apply
+            builder.Services.AddScoped<IApplyForJob, ApplyForJobRepository>();
+
             builder.Services.AddScoped<ICampany, CampanyRepository>(); // Example registration, adjust as needed
             builder.Services.AddScoped<Ifeedback, FeedbackRepository>();
 
             builder.Services.AddScoped<IContact, ContactRepository>();
             builder.Services.AddScoped<SearchAboutRepository, SearchAboutRepository>();
+master
 
 
             var app = builder.Build();
@@ -78,6 +82,8 @@ namespace ProjectMVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             app.MapRazorPages();
 
             app.Run();

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectMVC.Models;
 
@@ -11,9 +12,11 @@ using ProjectMVC.Models;
 namespace ProjectMVC.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240417173201_newMigration")]
+    partial class newMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,25 +272,6 @@ namespace ProjectMVC.Migrations
                     b.ToTable("ApplyForJobs");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Campany", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Companys");
-                });
-
             modelBuilder.Entity("ProjectMVC.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -377,7 +361,7 @@ namespace ProjectMVC.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Contact", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -385,24 +369,17 @@ namespace ProjectMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Companys");
                 });
 
             modelBuilder.Entity("ProjectMVC.Models.Feedback", b =>
@@ -1188,7 +1165,7 @@ namespace ProjectMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectMVC.Models.Campany", "Company")
+                    b.HasOne("ProjectMVC.Models.Company", "Company")
                         .WithMany("Jobs")
                         .HasForeignKey("CompanyId");
 
@@ -1197,12 +1174,12 @@ namespace ProjectMVC.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Campany", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Category", b =>
                 {
                     b.Navigation("Jobs");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Category", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Company", b =>
                 {
                     b.Navigation("Jobs");
                 });
