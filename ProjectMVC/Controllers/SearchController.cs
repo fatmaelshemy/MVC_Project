@@ -15,10 +15,10 @@ namespace ProjectMVC.Controllers
         }
 
 
-        public IActionResult Search(string JobName, int CategoryId, string Position)
+        public IActionResult Search(string JobName, int CategoryId, string Location)
         {
 
-            List<Job> Jobs = this.SearchAboutRepository.Search(JobName, CategoryId, Position);
+            List<Job> Jobs = this.SearchAboutRepository.Search(JobName, CategoryId, Location);
             return Json(Jobs);
         }
     }

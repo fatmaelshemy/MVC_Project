@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "CategoryIndex";
-    Layout = "_CategoryLayout";
+    Layout = "_MainLayout";
 }
 
 @model List<Category>
@@ -9,7 +9,10 @@
 <div class="container-xxl py-5">
     <div class="container">
         <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore By Category</h1>
-        <a asp-controller="Category" asp-action="New"  class="btn btn-success">Add New Category</a>
+         @if (User.IsInRole("Admin") == true)
+        {
+            <a asp-controller="Category" asp-action="New"  class="btn btn-success">Add New Category</a>
+        }
         <div class="row g-4">
             @foreach (Category category in Model)
             {
@@ -18,8 +21,11 @@
                                     <h6 class="mb-3">@category.Name</h6>
                                     <p class="mb-0">@category.Description </p>
                                 </a>
-
-    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-success">Delete</a>
+                    @if (User.IsInRole("Admin") == true)
+                    {
+    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id"
+    class="btn btn-success">Delete</a>
+                    }
                                     </div>
             }
         </div>

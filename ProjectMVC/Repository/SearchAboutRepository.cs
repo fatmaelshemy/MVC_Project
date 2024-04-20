@@ -12,12 +12,13 @@ namespace ProjectMVC.Repository
 
             DbContext = _context;
         }
-        public List<Job> Search(string JobName, int CategoryId, string Position)
+        public List<Job> Search(string JobName, int CategoryId, string Location)
         {
-            if (!JobName.IsNullOrEmpty() || CategoryId > 0 || !Position.IsNullOrEmpty())
+            if (!JobName.IsNullOrEmpty() || CategoryId > 0 || !Location.IsNullOrEmpty())
             {
                 List<Job> jobs = (DbContext.Jobs.Where(J => J.Name.Contains(JobName)
-                || (J.CategoryId == CategoryId) || (J.Position == Position)).OrderByDescending(j => j.DateTime).ToList());
+                || (J.CategoryId == CategoryId) || (J.Location == Location))
+                    .OrderByDescending(j => j.DateTime).ToList());
 
 
                 return jobs;
