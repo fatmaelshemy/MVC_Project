@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 
@@ -18,18 +19,35 @@ namespace ProjectMVC
             builder.Services.AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
 
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
+                options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<Context>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+            builder.Services.AddControllersWithViews();
+
+
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<Context>();
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<Context>();
 
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ICategory, CategoryRepository>();
             builder.Services.AddScoped<IJob, JobRepository>();
+ Apply
             builder.Services.AddScoped<IApplyForJob, ApplyForJobRepository>();
 
+            builder.Services.AddScoped<ICampany, CampanyRepository>(); // Example registration, adjust as needed
+            builder.Services.AddScoped<Ifeedback, FeedbackRepository>();
+
+            builder.Services.AddScoped<IContact, ContactRepository>();
+            builder.Services.AddScoped<SearchAboutRepository, SearchAboutRepository>();
+master
 
 
             var app = builder.Build();
@@ -51,8 +69,15 @@ namespace ProjectMVC
 
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),
+                "wwwroot", "img")),
+                RequestPath = "/img"
+            });
 
             app.MapControllerRoute(
                 name: "default",

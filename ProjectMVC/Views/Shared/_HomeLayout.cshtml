@@ -43,11 +43,15 @@
                             <a asp-controller="Category" class="dropdown-item" asp-action="Index">Category</a>
                             <a asp-controller="Home" class="dropdown-item" asp-action="testimonial">Testimonial</a>
                             <a asp-controller="Home" class="dropdown-item" asp-action="Errors">404</a>
+                            <a asp-controller="Home" class="dropdown-item" asp-action="Campany">Campany</a>
+
                         </div>
                     </div> *@
                     <a asp-controller="Home" class="nav-item nav-link" asp-action="Contact">Contact</a>
+                    <partial name="_LoginPartial"></partial>
                 </div>
-                <a asp-controller="Home" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block" asp-action="Category">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+               @*  <a asp-controller="Home" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block"
+                asp-action="Category">Post A Job<i class="fa fa-arrow-right ms-3"></i></a> *@
             </div>
         </nav>
         <!-- Navbar End -->

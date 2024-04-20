@@ -9,6 +9,7 @@ namespace ProjectMVC.Controllers
     public class ApplyForJobController : Controller
     {
         IApplyForJob apply { get; set; }
+ Apply
         public ApplyForJobController(IApplyForJob iApply )
         {
             apply= iApply;
@@ -23,6 +24,22 @@ namespace ProjectMVC.Controllers
         }
 
        
+
+        public ApplyForJobController(IApplyForJob iApply)
+        {
+            apply = iApply;
+        }
+       // [HttpPost]
+        //[Authorize]
+        //public IActionResult Apply(ApplyForJob model)
+        //{
+        //    // var model=new ApplyForJob();
+        //    //this.apply.Apply(model);
+        //    //return View("Apply");
+        //}
+
+
+master
     }
 
 

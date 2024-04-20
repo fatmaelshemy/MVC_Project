@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using ProjectMVC.Models;
+ using ProjectMVC.Models;
+using ProjectMVC.Repository;
+using ProjectMVC.ViewModel;
 using System.Diagnostics;
 
 
@@ -8,14 +10,26 @@ namespace ProjectMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public ICategory CategoryRepository { get; set; }
+        public IJob JobRepository { get; set; }
+        public HomeController(ILogger<HomeController> logger, ICategory _categoryRepository, IJob _jobRepository)
         {
+            this.CategoryRepository = _categoryRepository;
+            this.JobRepository = _jobRepository;
+
             _logger = logger;
         }
+ Apply
+
+
+       master
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel homeViewModel = new HomeViewModel();
+            homeViewModel.Categories = this.CategoryRepository.GetAll();
+            homeViewModel.Jobs = this.JobRepository.GetAll();
+
+            return View("Index", homeViewModel);
         }
 
         public IActionResult Privacy()

@@ -12,8 +12,8 @@ using ProjectMVC.Models;
 namespace ProjectMVC.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240403135831_init")]
-    partial class init
+    [Migration("20240418165322_init1")]
+    partial class init1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -266,6 +266,25 @@ namespace ProjectMVC.Migrations
                     b.ToTable("ApplyForJobs");
                 });
 
+            modelBuilder.Entity("ProjectMVC.Models.Campany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companys");
+                });
+
             modelBuilder.Entity("ProjectMVC.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -355,7 +374,7 @@ namespace ProjectMVC.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Company", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -363,17 +382,24 @@ namespace ProjectMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companys");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("ProjectMVC.Models.Feedback", b =>
@@ -434,6 +460,12 @@ namespace ProjectMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Qualifications")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Responsibility")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Salary")
                         .HasColumnType("float");
 
@@ -459,6 +491,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Software Engineer",
                             Position = "Employee",
+                            Qualifications = "Qualifications for a software engineer typically include ,a bachelor's degree in computer science, software engineering, or a related field. Some employers may also require a master's degree for more advanced positions. In addition to formal education, relevant skills in programming languages, software development, problem-solving, and teamwork are essential. Many software engineers also benefit from industry certifications and continuous learning to stay updated with the latest technologies and best practices.",
+                            Responsibility = "The responsibilities of a software engineer often include, designing, developing, and testing software solutions, as well as collaborating with cross-functional teams to understand requirements and deliver high-quality products. Software engineers are also responsible for maintaining and enhancing existing software, debugging and troubleshooting issues, and staying updated with industry best practices and technological advancements. Additionally, they may be involved in documenting software specifications, providing technical support, and participating in code reviews to ensure quality and efficiency.",
                             Salary = 50000.0,
                             Type = "Full Time"
                         },
@@ -471,6 +505,8 @@ namespace ProjectMVC.Migrations
                             Location = "Cario",
                             Name = "Software Developer",
                             Position = "Developer",
+                            Qualifications = "Qualifications for a software developer typically include a bachelor's degree in computer science, software engineering, or a related field. Strong programming skills, knowledge of software development methodologies, and the ability to work in a team environment are essential. Some employers may also prefer candidates with experience in specific programming languages and tools, as well as a strong understanding of software design principles and best practices.",
+                            Responsibility = "The responsibilities of a software developer often include participating in the entire software development lifecycle, from concept and design to testing and maintenance. Software developers collaborate with stakeholders to understand requirements, write clean and efficient code, troubleshoot and debug software issues, and continuously improve software functionality. They may also be involved in documenting software specifications, conducting code reviews, and staying updated with industry trends and advancements.",
                             Salary = 9800.0,
                             Type = "Part Time"
                         },
@@ -483,6 +519,8 @@ namespace ProjectMVC.Migrations
                             Location = "SmartVillage",
                             Name = "Software Engineer",
                             Position = "Engineer",
+                            Qualifications = "Bachelor's or master's degree in Computer Science, Software Engineering, or related field. Proven experience in software development methodologies and best practices. Proficient in multiple programming languages and frameworks relevant to the organization's tech stack. Strong analytical and problem-solving skills. Excellent communication and teamwork abilities.",
+                            Responsibility = "Design, develop, test, and maintain software systems to meet client or stakeholder requirements. Collaborate with team members to identify system requirements and integrate software components. Write clean, scalable, and efficient code. Troubleshoot, debug, and upgrade existing systems. Document development phases and monitor systems.",
                             Salary = 12000.0,
                             Type = "Full Time"
                         },
@@ -495,6 +533,8 @@ namespace ProjectMVC.Migrations
                             Location = "Sohag",
                             Name = "Backend Developer",
                             Position = "Developer",
+                            Qualifications = "Bachelor's degree in Computer Science or related field. Strong understanding of server-side languages such as Java, Python, Ruby, .NET, etc. Experience with database technology such as MySQL, Oracle, and MongoDB. Familiarity with cloud services and API integration. Excellent problem-solving skills and ability to think algorithmically.",
+                            Responsibility = "Develop and maintain the server-side logic of web applications and databases. Ensure high performance and responsiveness to requests from the front-end. Participate in the entire application lifecycle, focusing on coding, debugging, and providing user support. Create data protection and security settings. Write technical documentation.",
                             Salary = 30000.0,
                             Type = "Part Time"
                         },
@@ -507,6 +547,8 @@ namespace ProjectMVC.Migrations
                             Location = "Minya",
                             Name = "Frontend Developer",
                             Position = "Developer",
+                            Qualifications = "Bachelor's degree in Computer Science, or similar. Proficiency with HTML, CSS, and JavaScript. Experience with front-end development frameworks (e.g., React, Angular, Vue). Understanding of web design principles and UX/UI best practices. Familiarity with version control tools like Git.",
+                            Responsibility = "Develop new user-facing features and build reusable code and libraries for future use. Ensure the technical feasibility of UI/UX designs. Optimize application for maximum speed and scalability. Assure that all user input is validated before submitting to back-end services. Collaborate with other team members and stakeholders.",
                             Salary = 9800.0,
                             Type = "Full Time"
                         },
@@ -519,6 +561,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "UI Designer",
                             Position = "Team Lead",
+                            Qualifications = "Proven experience as a UI Designer or similar role. Strong portfolio of design projects. Proficiency in visual design and wire-framing tools. Knowledge of HTML/CSS; JavaScript is a plus. Problem-solving mindset and a keen eye for detail.",
+                            Responsibility = "Gather and evaluate user requirements in collaboration with product managers and engineers. Design graphic user interface elements, like menus, tabs, and widgets. Develop UI mockups and prototypes that clearly illustrate how sites function and look. Adhere to style standards on fonts, colors, and images. Provide guidance and mentorship to junior team members.",
                             Salary = 98000.0,
                             Type = "Part time"
                         },
@@ -531,6 +575,8 @@ namespace ProjectMVC.Migrations
                             Location = "Minyfia",
                             Name = "Graphic Designer",
                             Position = "Designer",
+                            Qualifications = "Bachelor's degree in Graphic Design or related field. Proven graphic designing experience with a strong portfolio. Proficiency in Photoshop, Illustrator, InDesign, and other visual design and wire-framing tools. Exceptional creativity and innovation. Excellent time management and organizational skills.",
+                            Responsibility = "Conceptualize visuals based on requirements. Prepare rough drafts and present ideas. Develop illustrations, logos, and other designs using software. Use appropriate colors and layouts for each graphic. Work with copywriters and creative director to produce the final design.",
                             Salary = 40000.0,
                             Type = "Full Time"
                         },
@@ -543,6 +589,8 @@ namespace ProjectMVC.Migrations
                             Location = "Alexandria",
                             Name = "UX Designer",
                             Position = "Designer",
+                            Qualifications = "Strong understanding of UX principles and best practices. Experience with user research, wireframes, and prototypes. Proficiency in UX design software such as Sketch, Adobe XD, or Figma. Excellent communication skills to collaborate with team members and stakeholders. Ability to solve problems creatively and effectively.",
+                            Responsibility = "Conduct user research and testing. Develop wireframes and task flows based on user needs. Collaborate with designers and developers to create intuitive, user-friendly software. Communicate design ideas and prototypes to developers. Keep abreast of competitor products and industry trends.",
                             Salary = 9000.0,
                             Type = "Full Time"
                         },
@@ -552,9 +600,11 @@ namespace ProjectMVC.Migrations
                             CategoryId = 2,
                             DateTime = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Design interactive interfaces",
-                            Location = "Cario",
+                            Location = "Cairo",
                             Name = "Interaction Designer",
                             Position = "Designer",
+                            Qualifications = "Bachelor's degree in Design, Computer Science, or relevant field. Proven experience as an Interaction Designer or similar role. Strong portfolio of design projects. Proficient in design software and interactive design tools. Excellent communication skills to collaborate with various stakeholders.",
+                            Responsibility = "Develop interactive design elements and architecture for digital platforms. Create user-focused concepts and interactive solutions. Work closely with UI designers and developers to implement interactive designs. Test and refine designs based on user feedback and data. Stay updated with the latest trends in interaction design and technology.",
                             Salary = 9800.0,
                             Type = "Full Time"
                         },
@@ -567,6 +617,8 @@ namespace ProjectMVC.Migrations
                             Location = "Elgharbia",
                             Name = "Visual Designer",
                             Position = "Designer",
+                            Qualifications = "Proven experience as a Visual Designer, Graphic Designer, or similar role. Strong portfolio of visual design projects. Proficiency in graphic design software including Adobe Photoshop, Adobe Illustrator, and other visual design tools. Excellent visual design skills with sensitivity to user-system interaction. Ability to present and defend designs and key deliverables to peers and executive level stakeholders.",
+                            Responsibility = "Develop visual elements for websites, applications, and other digital platforms. Create images, icons, and layouts according to design guidelines. Work with the design team to define and implement innovative solutions for the product direction, visuals, and experience. Execute all visual design stages from concept to final hand-off to engineering. Conceptualize original ideas that bring simplicity and user friendliness to complex design roadblocks.",
                             Salary = 9800.0,
                             Type = "Part Time"
                         },
@@ -579,6 +631,8 @@ namespace ProjectMVC.Migrations
                             Location = "Cario",
                             Name = "QA Tester",
                             Position = "Tester",
+                            Qualifications = "Qualifications for a QA Tester include a bachelor's degree in computer science, information technology, or a related field. Proficiency in various testing methodologies and tools, attention to detail, and strong analytical skills are essential. Experience with automated testing tools and a basic understanding of programming languages are advantageous.",
+                            Responsibility = "Responsibilities of a QA Tester involve designing, developing, and executing test cases to ensure the quality of software applications. They detect bugs and issues, provide detailed bug reports, and collaborate with the development team to resolve issues. QA Testers also participate in the development process to understand requirements and ensure compliance with quality standards.",
                             Salary = 9400.0,
                             Type = "Part Time"
                         },
@@ -591,6 +645,8 @@ namespace ProjectMVC.Migrations
                             Location = "Cario",
                             Name = "Automation Tester",
                             Position = "Tester",
+                            Qualifications = "Qualifications for an Automation Tester include a bachelor’s degree in computer science, engineering, or related field. Strong programming skills and experience with automation tools like Selenium or QTP are required. Understanding of software development methodologies and experience with CI/CD tools are beneficial.",
+                            Responsibility = "Responsibilities include designing and implementing automated testing frameworks, writing and executing test scripts, identifying and logging defects, and working with the development team to resolve them. Automation Testers also maintain and enhance test automation environments and integrate automation tests with the CI/CD pipeline.",
                             Salary = 9800.0,
                             Type = "Full Time"
                         },
@@ -603,6 +659,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Performance Tester",
                             Position = "Tester",
+                            Qualifications = "Qualifications include a bachelor's degree in computer science or a related field, with a strong understanding of performance testing methodologies and tools (e.g., LoadRunner, JMeter). Knowledge of programming and scripting languages, and experience with system monitoring tools are important.",
+                            Responsibility = "Responsibilities involve planning, designing, and implementing performance tests to ensure software applications meet performance criteria. This includes analyzing test results, identifying bottlenecks, and working closely with developers to optimize performance.",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -615,6 +673,8 @@ namespace ProjectMVC.Migrations
                             Location = "Cairo",
                             Name = "Quality Analyst",
                             Position = "Analyst",
+                            Qualifications = "Qualifications for a Quality Analyst include a bachelor's degree in computer science, IT, or a related field, with a deep understanding of QA methodologies. Strong analytical skills, attention to detail, and experience with QA tools and processes are essential.",
+                            Responsibility = "The main responsibilities include analyzing software products to ensure they meet quality standards and user requirements. This involves developing and executing test plans, documenting defects, and collaborating with development teams to resolve issues.",
                             Salary = 29900.0,
                             Type = "Full Time"
                         },
@@ -627,6 +687,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Data Scientist",
                             Position = "Scientist",
+                            Qualifications = "A Data Scientist typically holds a master’s or Ph.D. in data science, statistics, computer science, or a related field. Essential skills include proficiency in programming languages like Python or R, experience with data visualization tools, and a strong foundation in machine learning and statistical analysis.",
+                            Responsibility = "Responsibilities include collecting, processing, and analyzing large data sets to identify trends and patterns. Data Scientists develop predictive models, algorithms, and conduct experiments to test their effectiveness. They also communicate findings to stakeholders and provide insights to inform decision-making.",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -639,6 +701,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Machine Learning Engineer",
                             Position = "Engineer",
+                            Qualifications = "Qualifications include a degree in computer science, mathematics, or a related technical field. Proficiency in programming languages such as Python or Java, and experience with machine learning frameworks (e.g., TensorFlow, PyTorch) are required. A strong mathematical background is also important.",
+                            Responsibility = "Machine Learning Engineers are responsible for designing and implementing machine learning models. They work on data preprocessing, model training, testing, and deployment. Collaborating with data scientists and software engineers to integrate models into production systems is also part of their role.",
                             Salary = 29200.0,
                             Type = "Part Time"
                         },
@@ -651,6 +715,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Data Analyst",
                             Position = "Analyst",
+                            Qualifications = "A Data Analyst typically holds a bachelor's degree in information technology, computer science, or a related field. Proficiency in SQL, Excel, and data visualization tools like Tableau or Power BI is required. Analytical thinking and problem-solving skills are essential.",
+                            Responsibility = "Data Analysts collect and interpret data to identify trends, patterns, and insights. They create reports and dashboards for stakeholders, helping to drive decision-making and strategic planning. Ensuring data accuracy and providing recommendations based on data analysis are key responsibilities.",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -663,6 +729,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Big Data Engineer",
                             Position = "Engineer",
+                            Qualifications = "Bachelor's degree in Computer Science or related field\nExperience with big data technologies\nStrong analytical skills",
+                            Responsibility = "Develop and manage big data solutions\nAnalyze data sets to identify insights\nEnsure data security and privacy",
                             Salary = 29200.0,
                             Type = "Part Time"
                         },
@@ -675,6 +743,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Digital Marketing Specialist",
                             Position = "Specialist",
+                            Qualifications = "Bachelor's degree in Marketing or related field\nExperience with digital marketing tools and platforms\nStrong communication and analytical skills",
+                            Responsibility = "Plan and execute digital marketing campaigns\nMonitor and analyze campaign performance\nCollaborate with other teams to integrate marketing strategies",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -687,6 +757,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "SEO Analyst",
                             Position = "Analyst",
+                            Qualifications = "Proven experience as SEO Analyst\nKnowledge of SEO practices and analytics tools\nExcellent communication skills",
+                            Responsibility = "Perform ongoing keyword research\nOptimize website content for search engines\nTrack and analyze website analytics",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -699,6 +771,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Social Media Manager",
                             Position = "Manager",
+                            Qualifications = "Experience with social media management\nStrong communication and creative skills\nAbility to analyze performance metrics",
+                            Responsibility = "Develop and implement social media strategy\nCreate and distribute engaging content\nMonitor and report on performance metrics",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -711,6 +785,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Content Marketing Specialist",
                             Position = "Specialist",
+                            Qualifications = "Proven content creation experience\nExcellent writing and editing skills\nUnderstanding of marketing strategies",
+                            Responsibility = "Develop content strategy aligned with marketing targets\nCreate and publish engaging content\nAnalyze content performance and adjust strategies as needed",
                             Salary = 29200.0,
                             Type = "Part Time"
                         },
@@ -723,6 +799,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Graphic Designer",
                             Position = "Designer",
+                            Qualifications = "Bachelor's degree in Graphic Design or related field\nProficiency in graphic design software\nCreative thinking and attention to detail",
+                            Responsibility = "Create visual aspects of marketing materials, websites, and other media\nWork with clients or the art director to determine the scope of a project\nUse digital illustration, photo editing software, and layout software to create designs",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -735,6 +813,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Illustrator",
                             Position = "Illustrator",
+                            Qualifications = "Strong portfolio of illustrations or other graphics\nFamiliarity with design software and technologies\nA keen eye for aesthetics and details",
+                            Responsibility = "Create original pieces of artwork for digital or print\nUse various colors, graphics and effects to better visualize each concept\nParticipate in design briefs with clients, editors, or marketers to identify their needs",
                             Salary = 29200.0,
                             Type = "Part Time"
                         },
@@ -747,6 +827,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Art Director",
                             Position = "Director",
+                            Qualifications = "Proven experience as an Art Director\nStrong portfolio showcasing high-end digital design skills\nAbility to think creatively and provide marketable solutions",
+                            Responsibility = "Determine the best way to represent a concept visually\nDecide which photographs, art, or other design elements to use\nDevelop the overall look or style of a publication, an advertising campaign, or a theater, television, or film set",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -759,6 +841,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Motion Graphics Designer",
                             Position = "Designer",
+                            Qualifications = "Demonstrable graphic design skills with a strong portfolio\nProficiency with required desktop publishing tools, including Photoshop, After Effects, and Adobe Animate\nA strong eye for visual composition",
+                            Responsibility = "Design and create enticing motion graphics for video deliverables (corporate videos, websites, marketing demos, etc.)\nPrepare design plan, concept, and layout for motion graphic project\nAssist in selecting audio, video, colors, animation, etc. for graphic design",
                             Salary = 29200.0,
                             Type = "Part Time"
                         },
@@ -771,6 +855,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Financial Analyst",
                             Position = "Analyst",
+                            Qualifications = "Bachelor's degree in Finance, Accounting, or related field\nExperience with financial modeling and statistical analysis\nStrong analytical and data gathering skills",
+                            Responsibility = "Analyze financial data to identify trends and make recommendations\nPrepare financial reports and forecasts\nEvaluate investment opportunities and provide recommendations",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -783,6 +869,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Investment Banker",
                             Position = "Banker",
+                            Qualifications = "Bachelor's degree in Finance, Economics, or related field\nStrong analytical and quantitative skills\nExcellent communication and interpersonal skills",
+                            Responsibility = "Advise clients on investment opportunities and strategies\nManage and structure financial deals\nConduct financial analysis and market research",
                             Salary = 29200.0,
                             Type = "Part Time"
                         },
@@ -795,6 +883,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Financial Advisor",
                             Position = "Advisor",
+                            Qualifications = "Bachelor's degree in Finance, Economics, or a related field\nCertification as a Certified Financial Planner (CFP) preferred\nStrong understanding of the financial market and investment strategies",
+                            Responsibility = "Assess clients' financial situations and understand their needs\nProvide personalized financial advice and investment solutions\nMonitor and review clients' accounts and adjust plans as necessary",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -807,6 +897,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Accountant",
                             Position = "Accountant",
+                            Qualifications = "Bachelor's degree in Accounting or related field\nCertification (e.g., CPA) is a plus\nProven experience as an accountant",
+                            Responsibility = "Prepare accurate financial statements and reports\nEnsure compliance with financial laws and regulations\nManage all accounting transactions and audit financial transactions and documents",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -814,10 +906,14 @@ namespace ProjectMVC.Migrations
                         {
                             Id = 32,
                             CategoryId = 8,
+                            DateTime = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Provide patient care",
+                            Location = "Assiut",
                             Name = "Registered Nurse",
                             Position = "Nurse",
-                            Salary = 0.0,
+                            Qualifications = "Bachelor of Science in Nursing (BSN) degree\nActive Registered Nurse license\nProven experience as a registered nurse",
+                            Responsibility = "Provide direct patient care and assess their conditions\nAdminister medications and treatments\nEducate patients and their families on health plans and preventive care",
+                            Salary = 29200.0,
                             Type = "Full Time"
                         },
                         new
@@ -829,6 +925,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Medical Doctor",
                             Position = "Doctor",
+                            Qualifications = "Medical degree from a recognized university\nValid license to practice the profession\nProven experience as a Medical Doctor",
+                            Responsibility = "Diagnose patient conditions using examinations and tests\nPrescribe and administer treatment\nAdvise patients on health and preventive care",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -841,6 +939,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Medical Assistant",
                             Position = "Assistant",
+                            Qualifications = "Proven experience as a medical assistant or in a similar role\nKnowledge of healthcare operations and medical terminology\nStrong organizational and communication skills",
+                            Responsibility = "Assist in examining and treating patients under the direction of a physician\nPrepare patients for examinations and perform routine diagnostic checks\nManage medical supplies and keep detailed records of all patient interactions",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -853,6 +953,8 @@ namespace ProjectMVC.Migrations
                             Location = "Assiut",
                             Name = "Pharmacist",
                             Position = "Pharmacist",
+                            Qualifications = "Degree in Pharmacy or Pharmacology\nValid pharmacist license\nProven experience as a pharmacist",
+                            Responsibility = "Dispense medications accurately and ensure safety and quality standards are met\nProvide information to patients about medications and their use\nManage inventory and perform administrative tasks",
                             Salary = 29200.0,
                             Type = "Full Time"
                         },
@@ -1091,7 +1193,7 @@ namespace ProjectMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjectMVC.Models.Company", "Company")
+                    b.HasOne("ProjectMVC.Models.Campany", "Company")
                         .WithMany("Jobs")
                         .HasForeignKey("CompanyId");
 
@@ -1100,12 +1202,12 @@ namespace ProjectMVC.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Category", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Campany", b =>
                 {
                     b.Navigation("Jobs");
                 });
 
-            modelBuilder.Entity("ProjectMVC.Models.Company", b =>
+            modelBuilder.Entity("ProjectMVC.Models.Category", b =>
                 {
                     b.Navigation("Jobs");
                 });
