@@ -39,28 +39,47 @@ namespace ProjectMVC.Controllers
 
             return View("CampaniesJob", jobs);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult New()
         {
             return View("New");
         }
-
         [HttpPost]
         public IActionResult SaveNEw(Campany company)
         {
-            if (company.Name != null && company.Description != null)
+            if (ModelState.IsValid == true)
             {
-                _CompanyRepository.Insert(company);
-                _CompanyRepository.Save();
+                try
+                {
+                    if (company.Name != null && company.Description != null)
+                    {
+                        _CompanyRepository.Insert(company);
+                        _CompanyRepository.Save();
 
-                return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("error", "Name and Description cannot be null");
+                        return View("New", company);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("error", ex.InnerException.Message);
+                    return View("New", company);
+                }
             }
-            return View("New", company);
+            else
+            {
+                return View("New", company);
+            }
         }
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Campany company = _CompanyRepository.GetById(id);
@@ -99,6 +118,7 @@ namespace ProjectMVC.Controllers
             }
             return View("Edit", comview);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             _CompanyRepository.Delete(id);

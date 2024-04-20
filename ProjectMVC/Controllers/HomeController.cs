@@ -19,10 +19,7 @@ namespace ProjectMVC.Controllers
 
             _logger = logger;
         }
- Apply
 
-
-       master
         public IActionResult Index()
         {
             HomeViewModel homeViewModel = new HomeViewModel();

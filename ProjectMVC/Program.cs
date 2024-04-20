@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using ProjectMVC.Hubs;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 
@@ -39,7 +40,7 @@ namespace ProjectMVC
 
             builder.Services.AddScoped<ICategory, CategoryRepository>();
             builder.Services.AddScoped<IJob, JobRepository>();
- Apply
+ 
             builder.Services.AddScoped<IApplyForJob, ApplyForJobRepository>();
 
             builder.Services.AddScoped<ICampany, CampanyRepository>(); // Example registration, adjust as needed
@@ -47,7 +48,8 @@ namespace ProjectMVC
 
             builder.Services.AddScoped<IContact, ContactRepository>();
             builder.Services.AddScoped<SearchAboutRepository, SearchAboutRepository>();
-master
+
+            builder.Services.AddSignalR();
 
 
             var app = builder.Build();
@@ -78,6 +80,8 @@ master
                 "wwwroot", "img")),
                 RequestPath = "/img"
             });
+
+            app.MapHub<jobHub>("/jobHub");
 
             app.MapControllerRoute(
                 name: "default",

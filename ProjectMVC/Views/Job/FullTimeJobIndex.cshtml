@@ -1,10 +1,11 @@
 ﻿@{
     ViewData["Title"] = "FullTimeJobIndex";
-    Layout = "_Job_ListLayout";
+    Layout = "_MainLayout";
 }
 
 @model List<Job>
 
+    <div  class="Notify"></div>
 <div class="container-xxl py-5">
     <div class="container">
         <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
@@ -30,8 +31,10 @@
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show active">
                 <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job List</h1>
+                 @if (User.IsInRole("Admin") == true)
+        {
                 <a asp-controller="Job" asp-action="New" class="btn btn-success">Add New Job</a>
-
+        }
                 <!-- Job Items -->
                 <div class="row g-4">
                     @foreach (Job job in Model)
@@ -52,12 +55,17 @@
                                     <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                         <div class="d-flex mb-3">
                                             <!-- Links for delete and update actions -->
-                                            <a asp-controller="Job" asp-action="Delete" asp-route-id="@job.Id" class="btn btn-danger me-3">Delete</a>
-                                            <a asp-controller="Job" asp-action="Edit" asp-route-id="@job.Id" class="btn btn-primary">Update</a>
+                                            @if (User.IsInRole("Admin") == true)
+                                            {
+                                                <a asp-controller="Job" asp-action="Delete" asp-route-id="@job.Id" class="btn btn-danger me-3">Delete</a>
+                                                <a asp-controller="Job" asp-action="Edit"
+                                                asp-route-id="@job.Id" class="btn btn-primary">Update</a>}
                                             <a asp-controller="Job" asp-action="Details" asp-route-id="@job.Id" class="btn btn-success ms-3">More Details</a>
                                             <!-- See More button -->
                                         </div>
-                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: @job.DateTime</small>
+
+                                        <small class="text-truncate"><i class="far fa-calendar-alt 
+text-primary me-2"></i>Date Line: @job.DateTime</small>
                                     </div>
                                 </div>
 
@@ -70,4 +78,25 @@
         </div>
     </div>
 </div>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+ <script>
+    var hub = new signalR.HubConnectionBuilder().withUrl("/jobHub").build();
+    hub.start().then(
 
+        console.log("success success")
+
+    )
+    
+    hub.on("AddJob", function (JobName) 
+        $(".Notify").append(`<div class="alert alert-success" role="alert">
+  New Job Is Added ${JobName}
+</div>`)
+
+    }
+
+    )
+
+
+
+</script>

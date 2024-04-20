@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 
@@ -41,6 +42,7 @@ namespace ProjectMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult New()
         {
             return View("NewCat");
@@ -48,7 +50,7 @@ namespace ProjectMVC.Controllers
         [HttpPost]
         public IActionResult SaveNEw(Category cat)
         {
-            if (cat.Name != null && cat.Description != null)
+            if (ModelState.IsValid == true)
             {
                 _CategoryRepository.Insert(cat);
                 _CategoryRepository.Save();
@@ -57,14 +59,14 @@ namespace ProjectMVC.Controllers
             }
             return View("NewCat", cat);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             _CategoryRepository.Delete(id);
-            _CategoryRepository.Save(); 
+            _CategoryRepository.Save();
 
             return RedirectToAction("Index");
         }
-       
+
     }
 }

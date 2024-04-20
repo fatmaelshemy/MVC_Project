@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using ProjectMVC.Hubs;
 using ProjectMVC.Models;
 using ProjectMVC.Repository;
 using ProjectMVC.ViewModel;
@@ -9,24 +11,18 @@ namespace ProjectMVC.Controllers
     {
         ICategory _CategoryRepository;
         IJob _JobRepository;
- Apply
         IApplyForJob _ApplyForJob;
-
-        public JobController
-                (ICategory CategoryRepository, IJob JobRepository, IApplyForJob applyForJob)
-        {
-            _CategoryRepository = CategoryRepository;
-            _JobRepository = JobRepository;
-            _ApplyForJob = applyForJob;
-
         ICampany _CompanyRepository;
+        IHubContext<jobHub> hubContext;
+
         public JobController
-                (ICategory CategoryRepository, IJob JobRepository,ICampany CompanyRepository)
+                (ICategory CategoryRepository, IJob JobRepository, ICampany CompanyRepository, IHubContext<jobHub> _hubContext)
         {
             _CategoryRepository = CategoryRepository;
             _JobRepository = JobRepository;
             _CompanyRepository = CompanyRepository;
-master
+            hubContext = _hubContext;
+
         }
 
 
@@ -51,6 +47,7 @@ master
             return View("PartTimeJobIndex", JobListModel1);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult New()
         {
             var viewModel = new JobWithCategoryNameVm
@@ -61,10 +58,11 @@ master
             return View("NewJob", viewModel);
         }
 
+        [AutoValidateAntiforgeryToken]
         [HttpPost]
         public IActionResult SaveNew(JobWithCategoryNameVm jobview)
         {
-            if (jobview.Name != null && jobview.Description != null)
+            if ((ModelState.IsValid == true))
             {
                 Job jobmodel = new Job
                 {
@@ -76,7 +74,7 @@ master
                     CategoryId = jobview.SelectedCategoryId,
                     Type = jobview.Type,
                     Location = jobview.Location,
-                    CompanyId =jobview.SelectedCompanyId
+                    CompanyId = jobview.SelectedCompanyId
 
                 };
                 _JobRepository.Insert(jobmodel);
@@ -87,13 +85,9 @@ master
             return View("NewJob", jobview);
         }
 
-        //public IActionResult GetPartialCard(int id)
-        //{
-        //    Job jobModel = _JobRepository.GetById(id);
-        //    return PartialView("_JobCard", jobModel);
-        //    //return Json(jobModel);
-        //}
+
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
 
@@ -108,6 +102,7 @@ master
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             Job jobModel = _JobRepository.GetById(id);
@@ -122,7 +117,7 @@ master
             jobVM.Type = jobModel.Type;
             jobVM.Description = jobModel.Description;
             jobVM.Categories = _CategoryRepository.GetAll();
-            jobVM.Companies=_CompanyRepository.GetAll();
+            jobVM.Companies = _CompanyRepository.GetAll();
 
             return View("Edit", jobVM);
         }
@@ -156,6 +151,6 @@ master
             Job jobModel = _JobRepository.GetById(id);
             return View("Details", jobModel);
         }
-       
+
     }
 }
